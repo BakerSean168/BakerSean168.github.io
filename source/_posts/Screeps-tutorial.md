@@ -2,14 +2,17 @@
 title: Screeps-tutorial
 date: 2024-11-03 15:40:09
 tags:
+categories: 
+    - game
+description: Screeps教程部分代码
 ---
-# 1
-生产1个生产者
+
+# 生产1个生产者
 ```js
 Game.spawns['Spawn1'].spawnCreep( [WORK, CARRY, MOVE], 'Harvester1' );
 ```
 
-让生产者采集附近能源的脚本
+# 让生产者采集附近能源的脚本
 ```js
 module.exports.loop = function () {
     var creep = Game.creeps['Harvester1'];
@@ -20,7 +23,7 @@ module.exports.loop = function () {
 }
 ```
 
-增加运输能源到公司的功能
+# 增加运输能源到公司的功能
 ```js
 module.exports.loop = function () {
     var creep = Game.creeps['Harvester1'];
@@ -39,7 +42,7 @@ module.exports.loop = function () {
 }
 ```
 
-模块化脚本
+# 模块化脚本
 ```js
 var roleHarvester = {
 
@@ -62,7 +65,7 @@ var roleHarvester = {
 module.exports = roleHarvester;
 ```
 
-调用模块
+# 调用模块
 ```java
 var roleHarvester = require('role.harvester');
 
@@ -75,13 +78,13 @@ module.exports.loop = function () {
 }
 ```
 
-编写员工内存,修改员工职业
+# 编写员工内存,修改员工职业
 ```js
 Game.creeps['Harvester1'].memory.role = 'harvester';
 Game.creeps['Upgrader1'].memory.role = 'upgrader';
 ```
 
-增加运输者输送能量到扩展的功能
+# 增加运输者输送能量到扩展的功能
 ```js
 var roleHarvester = {
 
@@ -112,7 +115,7 @@ var roleHarvester = {
 module.exports = roleHarvester;
 ```
 
-打印房间中还有的能量
+# 打印房间中还有的能量
 ```js
 var roleHarvester = require('role.harvester');
 var roleBuilder = require('role.builder');
@@ -134,14 +137,14 @@ module.exports.loop = function () {
     }
 }
 ```
-
-使用 _.filter 查看当前某种员工的数量
+# 自动生产员工
+## 使用 _.filter 查看当前某种员工的数量
 ```js
 var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
 console.log('Harvesters: ' + harvesters.length);
 ```
 
-增加自动生产员工功能
+## 增加自动生产员工功能
 ```js
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
@@ -184,7 +187,7 @@ module.exports.loop = function () {
 Game.creeps['Harvester1'].suicide()
 ```
 
-删除已死亡员工的数据
+## 删除已死亡员工的数据
 ```js
 var roleHarvester = require('role.harvester');
 var roleUpgrader = require('role.upgrader');
@@ -229,6 +232,7 @@ module.exports.loop = function () {
 }
 ```
 
+# 防御
 激活安全模式
 ```js
 Game.spawns['Spawn1'].room.controller.activateSafeMode();

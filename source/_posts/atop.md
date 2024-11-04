@@ -2,6 +2,9 @@
 title: atop工具在Ubuntu中的配置和使用
 date: 2024-11-02 10:20:56
 tags:
+categories: 
+    - tools_document
+description: atop工具在Ubuntu中的配置和使用
 ---
 
 # 安装atop

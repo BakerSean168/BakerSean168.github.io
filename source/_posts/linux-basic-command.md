@@ -264,15 +264,15 @@ dig是一个命令行工具，用于查询DNS信息和解决DNS相关问题。
 示例：  
 `dig linux.org`  
 输出结果：  
-![alt text](assert/linux-basic-command_dig.png)
+![alt text](linux-basic-command/linux-basic-command_dig1.png)
 
- 输出的第一行打印安装的dig版本和查询的域名。第二行显示全局选项（默认情况下，只有cmd）。[+nocmd]可以不显示，得是第一个参数。
+输出的第一行打印安装的dig版本和查询的域名。第二行显示全局选项（默认情况下，只有cmd）。[+nocmd]可以不显示，得是第一个参数。  
 ```bash
 ; <<>> DiG 9.13.3 <<>> linux.org
 ;; global options: +cmd
 ```
 
-下一节包括有关从请求的机构（DNS服务器）接收的应答的技术细节。头部显示操作码（由dig执行的操作）和操作的状态。在本例中，状态为NOERROR，这意味着请求的授权机构在没有任何问题的情况下处理了查询。 [+nocomments]不显示。 
+下一节包括有关从请求的机构（DNS服务器）接收的应答的技术细节。头部显示操作码（由dig执行的操作）和操作的状态。在本例中，状态为NOERROR，这意味着请求的授权机构在没有任何问题的情况下处理了查询。 [+nocomments]不显示。   
 ```bash
 ;; Got answer:
 ;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 37159
@@ -343,7 +343,7 @@ type:
 
 dig命令的行为可以通过在${HOME}/.digrc文件中设置每个用户的选项来控制。  
 例如，如果只想显示答案部分，请打开文本编辑器并创建以下~/.digrc文件：  
-![alt text](assert/linux-basic-command_dig2.png)
+![alt text](linux-basic-command/linux-basic-command_dig2.png)
 +nocmd +noall +answer
 
 # 文本查询工具

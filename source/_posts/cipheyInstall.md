@@ -1,10 +1,10 @@
 ---
-title: ciphey 在 Windows 下的安装
+title: ciphey 在 Windows 下的安装和使用
 date: 2024-11-28 09:33:17
 tags:
 categories: 
     - tools_document
-description: ciphey 在 Windows 下的安装
+description: ciphey 在 Windows 下的安装和使用
 ---
 
 # 环境准备
@@ -44,4 +44,53 @@ WARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status
 WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1131)'))': /simple/ciphey/
 WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1131)'))': /simple/ciphey/
 Could not fetch URL https://pypi.mirrors.ustc.edu.cn/simple/ciphey/: There was a problem confirming the ssl certificate: HTTPSConnectionPool(host='pypi.mirrors.ustc.edu.cn', port=443): Max retries exceeded with url: /simple/ciphey/ (Caused by SSLError(SSLEOFError(8, 'EOF occurred in violation of protocol (_ssl.c:1131)'))) - skipping
+```
+
+# 使用
+
+There are 3 ways to run Ciphey.
+
+1. File Input ciphey -f encrypted.txt
+2. Unqualified input ciphey -- "Encrypted input"
+3. Normal way ciphey -t "Encrypted input"
+
+
+## 报错
+`UnicodeDecodeError: 'gbk' codec can't decode byte 0xbf in position 695: illegal multibyte sequence`  
+
+解决方式：  
+
+### 1
+
+修改该文件  
+`..\python安装的路径\Lib\site-packages\pywhat\regex_identifier.py`  
+
+```python
+import json
+import os
+import re
+
+
+class RegexIdentifier:
+    def __init__(self):
+        path = "Data/regex.json"
+        fullpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), path)
+        # 改下面这句里的 r 的后面加上 ", encoding = 'UTF-8'" , 显示指定 UTF-8 编码方式打开
+        with open(fullpath, "r") as myfile:
+            self.regexes = json.load(myfile)
+```
+
+### 2
+
+自己添加检测文件编码类型的功能  
+```python
+import chardet
+
+with open('filename.txt', 'rb') as f:
+    raw_data = f.read()
+    result = chardet.detect(raw_data)
+    encoding = result['encoding']
+
+with open('filename.txt', 'r', encoding=encoding) as f:
+    content = f.read()
 ```

@@ -1,0 +1,173 @@
+{
+  "main": {
+    "id": "8da19d59736f3adc",
+    "type": "split",
+    "children": [
+      {
+        "id": "60c89a797616f3f4",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "777a68e6d3f722ce",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "linux-basic-command.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "linux-basic-command"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "cf3ede699749d362",
+    "type": "split",
+    "children": [
+      {
+        "id": "26fd8388aad3a09c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "61cf853bac950405",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-folder-closed",
+              "title": "文件列表"
+            }
+          },
+          {
+            "id": "4a34b8abf47fc355",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "搜索"
+            }
+          },
+          {
+            "id": "b9622af48a219f5c",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "书签"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "7a4d9956dd230e26",
+    "type": "split",
+    "children": [
+      {
+        "id": "1e1af7e87e24a767",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fe015e735d316d6c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "linux-basic-command.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "linux-basic-command 的反向链接列表"
+            }
+          },
+          {
+            "id": "4b0f1c6bb391b714",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "linux-basic-command.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "linux-basic-command 的出链列表"
+            }
+          },
+          {
+            "id": "d1992575b3ba6344",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              },
+              "icon": "lucide-tags",
+              "title": "标签"
+            }
+          },
+          {
+            "id": "e56b6dc7d2839b4c",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "linux-basic-command.md"
+              },
+              "icon": "lucide-list",
+              "title": "linux-basic-command 的大纲"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "777a68e6d3f722ce",
+  "lastOpenFiles": [
+    "GG.md",
+    "atop.md",
+    "cipheyInstall.md",
+    "gitPush.md",
+    "linux-basic-command/linux-basic-command_dig1.png"
+  ]
+}

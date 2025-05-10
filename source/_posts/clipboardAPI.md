@@ -3,7 +3,7 @@ title: clipboardAPI
 categories:
   - 前端
 description: clipboardAPI
-date: 2025-05-10 11:07:25
+date: 2025-01-10 11:07:25
 tags: js
 ---
 # clipboard API

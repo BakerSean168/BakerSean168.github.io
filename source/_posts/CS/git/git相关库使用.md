@@ -1,7 +1,7 @@
 ---
 title: git相关库使用
 categories:
-  - nodejs
+  - git
 description: git相关库使用
 date: 2025-01-10 11:02:02
 tags:

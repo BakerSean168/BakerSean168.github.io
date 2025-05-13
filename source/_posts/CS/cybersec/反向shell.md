@@ -1,7 +1,7 @@
 ---
 title: 反向shell
 categories:
-  - null
+  - cybersec
 description: 反向shell
 date: 2025-03-17 12:31:27
 tags:

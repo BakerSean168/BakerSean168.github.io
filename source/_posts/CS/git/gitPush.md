@@ -3,7 +3,7 @@ title: gitPush
 date: 2024-12-03 19:58:09
 tags:
 categories: 
-    - tools_document
+    - git
 description: git 推送代码到远程仓库时遇到三种情况
 ---
 

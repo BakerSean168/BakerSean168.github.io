@@ -1,7 +1,6 @@
 ---
 title: 制作一个css动画
 categories:
-  - 前端
   - CSS
 description: 制作一个简单的 火车从左跑到右 的css动画
 date: 2025-05-17 18:21:39

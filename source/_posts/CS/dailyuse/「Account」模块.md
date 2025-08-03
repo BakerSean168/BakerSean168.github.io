@@ -1,5 +1,5 @@
 ---
-title: dailyuse(1)-账号模块
+title: Account 模块
 categories:
   - null
 description: electron+vue3 项目怎么实现一个支持离线、在线的账号模块

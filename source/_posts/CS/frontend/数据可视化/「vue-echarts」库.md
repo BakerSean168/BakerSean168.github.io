@@ -127,3 +127,108 @@ const periodBarOption = computed(() => {
 
 ### 优化细节
 
+[配置项文档](https://echarts.apache.org/zh/option.html#grid)
+
+通过提供的参数来修改 X轴、Y轴、tooltip 等的样式。  
+我是用了 vuetify 的主题变量来作为颜色参数，可以根据用户选择的主题来变化样式。  
+
+```Vue
+<template>
+  <v-chart class="chart" :option="krBarOption" autoresize />
+</template>
+
+<script setup lang="ts">
+import { computed } from 'vue'
+import VChart from 'vue-echarts'
+import type { Goal } from '@/modules/Goal/domain/aggregates/goal'
+import { useTheme } from 'vuetify'
+
+const props = defineProps<{
+  goal: Goal | null
+}>()
+const theme = useTheme()
+const surfaceColor = theme.current.value.colors.surface 
+const fontColor = theme.current.value.colors.font // 获取主题主色
+
+const keyResults = computed(() => props.goal?.keyResults || [])
+
+const krNames = computed(() => props.goal?.keyResults?.map(kr => kr.name) ?? [])
+const krProgress = computed(() => props.goal?.keyResults?.map(kr => kr.progress) ?? [])
+
+const krBarOption = computed(() => ({
+  backgroundColor: surfaceColor,
+  title: { text: '关键结果进度', left: 'center', top: 10, textStyle: { fontSize: 16 } },
+  grid: { left: 60, right: 60, top: 50, bottom: 30 },
+  tooltip: {
+    show: true,
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    textStyle: {
+      color: fontColor,
+      fontSize: 14
+    },
+    formatter: (params: any) => {
+      // params.dataIndex 对应 keyResult 的索引
+      const kr = keyResults.value[params.dataIndex]
+      if (!kr) return ''
+      return `
+        <div>
+          <strong>${kr.name}</strong><br/>
+          起始值: ${kr.startValue}<br/>
+          目标值: ${kr.targetValue}<br/>
+          当前值: ${kr.currentValue}
+        </div>
+      `
+    },
+
+  },
+  xAxis: {
+    max: 100,
+    splitLine: { show: false },
+    axisLabel: { show: false },
+    axisLine: { show: false },
+    axisTick: { show: false }
+  },
+  yAxis: {
+    type: 'category',
+    data: krNames.value,
+    axisTick: { show: false },
+    axisLine: { show: false },
+    axisLabel: { fontSize: 14 }
+  },
+  series: [{
+    type: 'bar',
+    data: krProgress.value,
+    label: {
+      show: true,
+      position: 'right',
+      formatter: '{c}%',
+      fontSize: 14,
+      color: fontColor
+    },
+    itemStyle: {
+      color: '#1890ff',
+      borderRadius: [8, 8, 8, 8]
+    },
+    barWidth: 18
+  }]
+}))
+</script>
+
+<style scoped>
+.chart {
+  width: 100%;
+  height: 220px;
+  min-height: 180px;
+  margin-bottom: 24px;
+
+  border-radius: 16px;
+  overflow: hidden;
+}
+</style>
+
+```
+
+# 参考
+
+https://segmentfault.com/a/1190000021898188#item-4-3

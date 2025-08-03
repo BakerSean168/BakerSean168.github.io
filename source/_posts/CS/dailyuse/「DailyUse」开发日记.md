@@ -25,15 +25,59 @@ tags:
 
 在 fromDTO 函数中，先用 构造函数生成初步恢复对象，再用 set 方法恢复其他（createAt等）属性
 
-## 整个项目的架构
+# 整个项目的架构
 
 - 采用了 Electron + Vue3 + TypeScript + Pinia + Vite  
 - 分为主进程 和 渲染进程。  
 - 目前主进程和渲染进程都采用 DDD 架构来管理代码模块。  
 
+项目结构：  
+```
+DailyUse/
+├── common/
+│   ├── modules/
+│   └── shared/
+├── docs/
+│   ├── common/
+│   ├── electron/
+│   └── src/
+├── electron/
+│   ├── modules/
+│   ├── preload/
+│   ├── shared/
+│   ├── windows/
+│   ├── electron-env.d.ts
+│   ├── main.ts
+│   └── preload.ts
+├── src/
+│   ├── assets/
+│   ├── i18n/
+│   ├── modules/
+│   ├── plugins/
+│   ├── shared/
+│   ├── views/
+│   ├── App.vue
+│   ├── main.ts
+│   ├── shims-vue.d.ts
+│   ├── style.css
+│   └── vite-env.d.ts
+├── index.html
+├── README.md
+└── ...
+
+common 文件夹用来存放一些公共文件，如：  
+类型定义文件
+
+docs文件夹用来存放一些文档文件。  
+
+electron文件夹用来存放 主进程的代码。  
+
+src 文件夹用来存放渲染进程的代码。  
+```
+
 每个主进程模块的架构大致如下：  
 ```
-Task/                        # 任务模块根目录
+ModuleName/                  # 模块根目录
 ├── application/             # 应用层：编排业务用例，协调领域服务和基础设施，暴露给外部（如 IPC Handler）
 │   ├── services/            # 应用服务：处理具体用例的服务（如 MainTaskApplicationService）
 │   └── events/              # 应用层事件/事件处理器：如与前端或其他模块的集成事件
@@ -52,6 +96,36 @@ Task/                        # 任务模块根目录
 ├── initialization/          # 初始化相关：模块启动、资源注册、生命周期管理等
 └── index                    # 统一导出模块内部的类型方法等，方便其他地方引用
 ```
+
+每个渲染进程模块：  
+```
+ModuleName/
+├── application/
+│   ├── services/
+│   └── events/
+├── domain/
+│   ├── aggregates/
+│   ├── entities/
+│   ├── events/
+│   ├── services/
+│   ├── types/
+│   ├── utils/
+│   └── valueObjects/
+├── infrastructure/
+│   └── ipc/
+├── initialization/
+├── presentation
+│   ├── components/
+│   ├── composables/
+│   ├── stores/
+│   └── views/
+└── index.ts
+
+```
+
+渲染进程中一般不需要实现抽象仓储层，直接在 application 层中使用 store 进行数据操作。
+
+
 
 ### 模块的基本结构
 
@@ -392,4 +466,30 @@ private async updateKeyResultsForGoal(accountUuid: string, goalUuid: string, key
 3. 修复了 goalDialog 表单在修改 KeyResult 数据时无法响应式更新的问题
 4. 在 goalReview 中添加了图表帮助用户复盘
 
-完成记录数在不同时间段的数量，
+### 20250801
+
+1. 改善了 goalReview 的页面样式（布局、图标）
+2. 重构 sessionLog 模块的代码（改善聚合根代码，修复仓库代码）
+
+仿照 goal仓库（实现 mapRowToxx 、mapxxToRow。。。） 和 sessionLog 表的构造字段，来修改该文件，给出完整代码  
+
+### 20250802
+
+1. 实现 logout 功能
+2. 优化 authentication 模块的代码结构
+
+### 20250803
+
+1. 实现 快速登录 功能
+
+帮我把基础的通用的代码放到 common 文件夹中，比如 src/shared/domain 中的基础类（在electron/shared/domain中也有），在主进程和渲染进程中都会使用；
+还有 src/shared/events 的事件总线基础类；
+现在主进程和渲染进程中同时有相同的基础类，在将这些基础类放到 common 文件夹中后，修改所有使用这些文件的引用路径，使用 `@common/xxx` 来引用；
+
+还有有 `export * from "@electron/shared/domain/domainEvent"` 类似这中引用的类型，都放到 common文件夹中。
+一次性完成，直接移动文件，不需要经我确认，正确修改路径引用！！！
+
+当前很多模块的代码的主进程和渲染进程都有相同或者类似的 接口定义文件，重复了，希望你能帮我把他们合并并移动到 common 文件中，比如把这两个 task.ts 移动到 common/modules/task/types/task.ts ， 以 authentication.ts 为例，同时帮我实现基础接口和 主进程、渲染进程下的接口，并区分 接口 和 DTO数据接口，数据接口 应该把时间、boolean转为 number，Map等也修改为可传输类型。
+上面是一个例子，请你帮我修改所有还没有修改好的模块
+
+2. 去除掉 DateTime 定义，直接使用 Date;大改 Task 模块相关代码（task 的时间主要采用了 DateTime），修改了 聚合根的 toDTO 相关方法，消除了报错，但是应该仍有 BUG

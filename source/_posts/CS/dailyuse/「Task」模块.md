@@ -1,8 +1,8 @@
 ---
-title: 任务模块改为DDD模式的尝试
+title: 任务模块开发过程
 categories:
   - null
-description: 任务模块改为DDD模式的尝试
+description: 
 date: 2025-06-21 20:54:22
 tags:
 ---
@@ -2146,3 +2146,15 @@ DDD 模式最重要的应该就是服务代码的管理，它应该分三层：
 
 ❓  
 IPC 通信报了 无法克隆的错误时，仍然会继续执行主进程的创建任务模板的服务
+
+
+# 第三次重构
+
+1. 使用 Date 时间类型，而非 DateTime
+2. 优化 toDTO 相关传输方法，严格区分 接口 和 数据传输接口
+3. 修改了 数据库 的字段
+template_old-> template 是我给你的修改范例 还有新的 taskTemplateDatabaseRepository 数据库代码,我也更新了 taskInstance 的类型接口，请你帮我重构 另外的 taskInstance 和 taskMetaTemplate
+
+createTaskTemplateByMetaTemplate 方法可以直接放在渲染进程的 metaTemplate 聚合根中
+
+

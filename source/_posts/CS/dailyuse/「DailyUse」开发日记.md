@@ -493,3 +493,15 @@ private async updateKeyResultsForGoal(accountUuid: string, goalUuid: string, key
 上面是一个例子，请你帮我修改所有还没有修改好的模块
 
 2. 去除掉 DateTime 定义，直接使用 Date;大改 Task 模块相关代码（task 的时间主要采用了 DateTime），修改了 聚合根的 toDTO 相关方法，消除了报错，但是应该仍有 BUG
+
+### 20250804
+
+1. 开始重构 Task 模块
+- 修改存储数据表结构，数据库层代码
+2. 修复了一个注册账号的BUG，之前意外把带生成认证信息的事件的注册方法删除了，现在重新添加了。
+
+### 20250805
+
+1. 修复了渲染进程获取不到 taskInstance 的 bug
+2. 优化了 TaskInstanceManagement.vue 的页面
+3. 删除了 goal 表 的 目录id 要求

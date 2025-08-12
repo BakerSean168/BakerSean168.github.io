@@ -269,24 +269,6 @@ build/
 .parcel-cache/
 ```
 
-### 4. Git Hooks 应用
-
-使用 Husky 进行代码质量控制：
-
-```json
-{
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": ["eslint --fix", "prettier --write"]
-  }
-}
-```
-
 ### 5. 团队协作流程
 
 1. **功能开发流程**

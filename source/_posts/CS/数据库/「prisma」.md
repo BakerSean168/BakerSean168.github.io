@@ -107,4 +107,26 @@ main()
     await prisma.$disconnect()
     process.exit(1)
   })
-``
+```
+
+# 实际使用
+
+## 更新数据表
+
+```bash
+# 开发：生成并应用迁移（会在 prisma/migrations 生成 SQL）
+pnpm exec prisma migrate dev --name describe_change
+pnpm exec prisma generate
+
+# 快速同步（不生成迁移文件）
+pnpm exec prisma db push
+pnpm exec prisma generate
+
+# 生产：应用已有迁移（无交互）
+pnpm exec prisma migrate deploy
+pnpm exec prisma generate
+
+# 如果你没有把 prisma 安装到项目依赖，可用 pnpm dlx（一次性下载并运行）
+pnpm dlx prisma migrate dev --name describe_change
+pnpm dlx prisma generate
+```

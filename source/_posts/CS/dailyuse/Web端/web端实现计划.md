@@ -199,7 +199,45 @@ tags:
 
 ## 第一步
 
+### 跑通 注册登录功能
+
+#### 1. domain package
+
 请你参考 domain-server、domain-core 的 account 模块，来帮我实现 domain-server、domain-core 的 authentication模块。
 重点：
 1. 在 domain-core 的 authentication 模块的 types 文件夹 下创建每个domain对象的接口定义，并在每个domain对象中 implement。
 2. 在 domain-server 中的 types 文件夹下 继承 接口，可以先用 isClient isServer 占位，或者你直接给出需要的接口，并在 domain 对象中 implement
+
+#### 2. domain event
+
+我的 Electron+Vue3 端的注册登录流程中用到了领域事件系统。  
+注册时，account 作为主模块，发送账户注册事件，通过事件总线发送给认证模块，认证模块生成认证对象（密码）。  
+这些事件代码是不是也应该放到 domain-server 或者 domain-core package 中
+
+#### 3. 一个疑问
+
+先请你详细讲讲一个问题，我之前使用的是 Electron+Vue3 技术框架并实现了一个本地（单机）的应用。Electron 是分为主进程和渲染进程，我之前是将 Electron 的主进程作为类似后端的东西，把账户注册、增删查改数据、数据业务都放在了主进程；渲染进程则作为前端，主要是页面展示和简单的数据处理。  
+我希望是扩展，实现在线功能：  
+- 桌面应用应用端：Electron+Vue3 客户端 和 Express 服务端  
+- Web应用： Vue3 网页 和 Express 服务端  
+
+这两个服务端用同一个服务端可以做到吗？如果使用同一个服务端他们的职责是什么？  
+比如我当前已经实现的桌面应用端貌似只需要远程账号功能，和数据同步功能，就可以实现基础功能+跨设备同步数据。  
+但是我的 Web 端怎么做呢？我要把增删查改的逻辑添加到 Web 端代码中吗？还是说我应该在服务端也实现类似 Electron 主进程中的那些业务流程的代码，但是这样的话我应该怎么处理桌面应用端和服务端的关系？
+
+ans：  
+在 Express 服务端实现完整的业务功能（基础模块的所有功能等等），Web 应用就
+
+#### 4. DDD 中的仓库层实现问题
+
+我有一个问题，我的 AuthCredential 聚合根包含了多个属性，有些是实体，在DDD 中应该怎么写 仓库层的代码，是直接 AuthCredential 中引用其他实体的仓储方法吗，还是有其他最佳实践
+
+#### 5. 包对象继承问题
+
+在 core 中 tokens 这些值对象或实体的类型为 ITokenCore。
+1. core 中的类型是不是改为 TokenCore 更好
+2. 在 domain-server 中 我有 Token extends TokenCore
+
+js 中的类继承，怎么来实现更简洁优雅的代码？  
+TokenCore 为通用内容，基础属性。  
+domain-server 中的 Token extends TokenCore 增加服务端属性，方法，该怎么添加，新的构造函数该怎么写

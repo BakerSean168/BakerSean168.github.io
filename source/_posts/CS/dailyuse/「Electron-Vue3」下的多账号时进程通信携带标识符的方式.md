@@ -1,7 +1,7 @@
 ---
 title: 「Electron+Vue3」下的多账号时进程通信携带标识符的方式
 categories:
-  - null
+  - dailyuse
 description: 「Electron+Vue3」使用多账号时，主进程与渲染进程通信获取用户数据应该要有用户标识符吧，比如account_uuid,是要在每个需要标识符的ipc通信里添加上这个字段吗，还是有别的最佳实践？
 date: 2025-07-19 08:52:31
 tags:

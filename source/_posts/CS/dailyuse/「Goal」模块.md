@@ -1,7 +1,7 @@
 ---
 title: 目标模块用DDD重构
 categories:
-  - null
+  - dailyuse
 description: 目标模块用DDD重构
 date: 2025-07-06 19:10:01
 tags:
@@ -16,6 +16,7 @@ tags:
 - 为用户提供可视化的目标进度、时间范围
 - 与任务模块的任务进行联动
 - 与仓库模块进行联动
+  - 目标关联仓库中的文档资源，并添加打开文档功能，点击后弹出编辑器并打开所有关联文档
 - 操作的全流程记录（找实习，面试了哪些，发放offer后准备事项。。。）
 
 目标模块中有 目标节点（goalDir）、目标（goal）、关键结果（keyResult）、记录（record）、目标复盘（goalReview）  

@@ -17,3 +17,12 @@ tags:
 **总结：**  
 1. 主进程和渲染进程代码尽量不要复用了
 2. 及时保存代码到仓库，到时候可以直接回退  
+
+### tsup+Nx的构建
+
+**问题**  
+Nx 传递`--outputPath`参数给 tsup，但是 tsup 不支持这个参数
+
+**解决**  
+- 在 `package.json` 中添加 `--out-dir dist`
+- 在各包的 `project.json` 中移除 `outputPath` 选项，改为固定的 outputs 路径

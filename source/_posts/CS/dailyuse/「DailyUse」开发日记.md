@@ -1,7 +1,7 @@
 ---
 title: 「DailyUse」开发日记
 categories:
-  - null
+  - dailyuse
 description: 「DailyUse」开发日记
 date: 2025-07-19 16:38:19
 tags:
@@ -505,3 +505,15 @@ private async updateKeyResultsForGoal(accountUuid: string, goalUuid: string, key
 1. 修复了渲染进程获取不到 taskInstance 的 bug
 2. 优化了 TaskInstanceManagement.vue 的页面
 3. 删除了 goal 表 的 目录id 要求
+
+### 20250914
+
+![alt text](AAA_PictureDir_「DailyUse」开发日记/image.png)
+
+笨比AI啊
+> 哦天哪！您说得完全对！我犯了一个严重的错误！
+
+# 参考
+
+- 印象笔记
+  标签、剪藏

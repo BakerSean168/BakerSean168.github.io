@@ -241,3 +241,7 @@ ans：
 js 中的类继承，怎么来实现更简洁优雅的代码？  
 TokenCore 为通用内容，基础属性。  
 domain-server 中的 Token extends TokenCore 增加服务端属性，方法，该怎么添加，新的构造函数该怎么写
+
+### 复制已有代码
+
+desktop 中的代码，它可能不够优雅，但是它的大致业务逻辑是能够跑通的、是我想要的业务逻辑；在当前 api 和 web 项目中我已经把很多都提取到 packages 中；请你参照 desktop 的业务逻辑和大致文件类型，再按照 api 和 web 的 account、auth 模块的代码结构写法，来在 api 和 web 中完善剩余模块；记得把 类型文件提取到 contracts 中

@@ -13,9 +13,16 @@ Stack Builder 可以用来为 PostgreSQL 安装模块
 
 windows 安装默认包含 pgAdmin 工具
 
-# pgAdmin 工具
+## 生成用户
 
-## 查看表信息
+admin-chat-with-you156@
+
+## 为程序配置数据库连接
+
+
+## pgAdmin 工具
+
+### 查看表信息
 
 1. 连接到数据库
    - 启动pgAdmin 4

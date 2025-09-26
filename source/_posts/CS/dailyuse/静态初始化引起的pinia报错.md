@@ -1,7 +1,7 @@
 ---
 title: 静态初始化引起的pinia报错
 categories:
-  - null
+  - dailyuse
 description: 静态初始化引起的pinia报错
 date: 2025-07-02 08:20:46
 tags:

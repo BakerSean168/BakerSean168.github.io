@@ -1,7 +1,7 @@
 ---
 title: Electron-Vue3项目数据的本地存储
 categories:
-  - 前端
+  - dailyuse
 description: Electron-Vue3项目数据的本地存储
 date: 2025-06-02 12:13:54
 tags:

@@ -1,7 +1,7 @@
 ---
 title: Electron+Vue3实现双窗口
 categories:
-  - null
+  - dailyuse
 description: Electron+Vue3实现双窗口
 date: 2025-07-13 22:06:11
 tags:

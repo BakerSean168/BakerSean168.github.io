@@ -1,7 +1,7 @@
 ---
 title: DailyUse的「Reminder」模块
 categories:
-  - null
+  - dailyuse
 description: DailyUse的「Reminder」模块
 date: 2025-07-14 21:41:32
 tags:
@@ -276,3 +276,9 @@ const reminderTemplateGroupCard = ref({
 2. 传入 完整对象，但是页面中渲染的属性（如 enbaled）还是通过 computed 和 传入对象的 uuid 从 store 中获取。
 
 好像其实是一个方案
+
+## template 启用状态的逻辑
+
+受到 group 的 启用模式、是否启用 和 reminderTemplate 的 自我启用状态 的影响
+- group 启用模式 为 group（受组控制）时， template 的 enable = group.enable
+- group.enableMode = individual 时，template.enable = template.selfEnable

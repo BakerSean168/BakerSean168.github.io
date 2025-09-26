@@ -7,6 +7,21 @@ date: 2025-01-19 10:24:21
 tags:
 ---
 
+## `<!DOCTYPE>`声明
+
+**作用**  
+声明文档类型，告诉浏览器以何种规范解析HTML文档。
+不是HTML标签，而是文档类型声明（Document Type Declaration）。
+
+**语法**
+在HTML5中，唯一且简化的声明：<!DOCTYPE html>。  
+在HTML4.01或XHTML中，声明更复杂（如 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">）。
+
+**特性**
+必须位于HTML文档的第一行（在 `<html>` 标签之前）。
+不区分大小写（如 `<!doctype html>` 也有效）。
+不是单标签，也不是HTML标签，而是特殊声明。
+
 ## src 和 href
 
 | 对比维度 | src | href |

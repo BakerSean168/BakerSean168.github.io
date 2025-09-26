@@ -1,7 +1,7 @@
 ---
 title: 任务模块开发过程
 categories:
-  - null
+  - dailyuse
 description: 
 date: 2025-06-21 20:54:22
 tags:
@@ -2156,5 +2156,29 @@ IPC 通信报了 无法克隆的错误时，仍然会继续执行主进程的创
 template_old-> template 是我给你的修改范例 还有新的 taskTemplateDatabaseRepository 数据库代码,我也更新了 taskInstance 的类型接口，请你帮我重构 另外的 taskInstance 和 taskMetaTemplate
 
 createTaskTemplateByMetaTemplate 方法可以直接放在渲染进程的 metaTemplate 聚合根中
+
+# 第四次重构
+
+先讨论 ITaskTemplate 的类型结构  
+- 个人的任务管理，TaskTemplate 数量应该不会很多，不需要筛选分类
+- 一个任务模板，用于生成任务实例
+- 任务模板应该用于描述一个长期或者多次的任务，它应该有开始日期、结束日期，可以是没有截止日期；任务的具体时间应该支持整日、时间范围、时间点；支持每周哪几天、每月哪几天、或者每间隔几天的调度
+
+
+{
+  TimeConfig: {
+    Date: {
+      startDate: 2025-09-09 // 默认 0 时 开始
+      endDate: 2025-09-12  // 默认 24 时 结束
+    },
+    Time: {
+      type: ALLDAY | Point | RANGE
+      startTime?: 20:29
+      endTime?: 21:29
+    }
+  }
+
+}
+
 
 

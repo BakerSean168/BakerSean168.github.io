@@ -1,7 +1,7 @@
 ---
 title: 前后端的DTO数据同步
 categories:
-  - null
+  - dailyuse
 description: 前后端的DTO数据同步
 date: 2025-08-12 14:54:45
 tags:

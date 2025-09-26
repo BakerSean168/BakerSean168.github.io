@@ -1,12 +1,7 @@
 ---
 title: 基于Electron+Vue3+Express的数据同步功能的实现
 categories:
-  - Electron
-  - Vue3
-  - Express
-  - nodejs
-  - 前端
-  - 后端
+  - dailyuse
 description: 基于Electron+Vue3+Express的数据同步功能的实现,只实现本地数据修改后立刻上传至云端
 date: 2025-05-23 09:29:09
 tags:

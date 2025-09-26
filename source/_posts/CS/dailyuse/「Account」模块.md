@@ -1,7 +1,7 @@
 ---
 title: Account 模块
 categories:
-  - null
+  - dailyuse
 description: electron+vue3 项目怎么实现一个支持离线、在线的账号模块
 date: 2025-05-24 10:42:00
 tags:

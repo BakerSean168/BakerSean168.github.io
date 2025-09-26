@@ -1,10 +1,7 @@
 ---
 title: electron+vue3项目的本地数据缓存策略
 categories:
-  - Electron
-  - Vue3
-  - nodejs
-  - 前端
+  - dailyuse
 description: electron+vue3项目的本地数据缓存策略
 date: 2025-05-24 16:49:06
 tags:

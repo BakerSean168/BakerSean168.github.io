@@ -1,7 +1,7 @@
 ---
 title: 「DailyUse」使用的事件方法总结
 categories:
-  - null
+  - dailyuse
 description: 「DailyUse」使用的事件方法总结
 date: 2025-07-30 19:38:54
 tags:

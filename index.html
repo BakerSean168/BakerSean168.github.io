@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakerSean | Terminal Gateway</title>
+  <style>
+    /* Basalt & Moss Color Palette */
+    :root {
+      --bg: #151614;
+      --bg-secondary: #1c1d1a;
+      --border-color: #2c2d2a;
+      --text-main: #e2e1dd;
+      --text-muted: #a8a9a4;
+      --primary: #8b9a46;
+      --primary-hover: #728038;
+      --font-mono: 'IBM Plex Mono', 'Courier New', Courier, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      line-height: 1.6;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* Organic Wabi-Sabi Grid Overlay */
+    body::before {
+      content: " ";
+      display: block;
+      position: absolute;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.06));
+      z-index: 10;
+      background-size: 100% 4px, 6px 100%;
+      pointer-events: none;
+    }
+
+    .terminal-container {
+      width: 100%;
+      max-width: 650px;
+      padding: 30px;
+      border: 1px solid var(--border-color);
+      background-color: var(--bg-secondary);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 2;
+    }
+
+    .terminal-header {
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      letter-spacing: 2px;
+    }
+
+    .status-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background-color: var(--primary);
+      border-radius: 50%;
+      margin-right: 8px;
+      box-shadow: 0 0 8px var(--primary);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.4; }
+      50% { opacity: 1; }
+      100% { opacity: 0.4; }
+    }
+
+    .terminal-output {
+      min-height: 180px;
+      margin-bottom: 25px;
+    }
+
+    .line {
+      margin-bottom: 8px;
+      white-space: pre-wrap;
+    }
+
+    .line.muted {
+      color: var(--text-muted);
+    }
+
+    .line.primary {
+      color: var(--primary);
+    }
+
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 15px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease-out;
+    }
+
+    .options-list.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .option-link {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 12px 16px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .option-link:hover {
+      border-color: var(--primary);
+      background-color: var(--bg);
+      transform: translateX(4px);
+    }
+
+    .option-key {
+      color: var(--primary);
+      margin-right: 15px;
+      font-weight: bold;
+      width: 35px;
+    }
+
+    .option-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-title {
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+
+    .option-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .terminal-footer {
+      border-top: 1px dashed var(--border-color);
+      padding-top: 15px;
+      margin-top: 25px;
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 8px;
+      height: 15px;
+      background-color: var(--primary);
+      margin-left: 5px;
+      animation: blink 0.8s step-end infinite;
+      vertical-align: middle;
+    }
+
+    @keyframes blink {
+      from, to { background-color: transparent }
+      50% { background-color: var(--primary) }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="terminal-container">
+    <div class="terminal-header">
+      <div>BAKERSEAN // GATEWAY_PORTAL v1.0</div>
+      <div style="display: flex; align-items: center;">
+        <span class="status-dot"></span>SYS.ONLINE
+      </div>
+    </div>
+
+    <div class="terminal-output" id="output">
+      <div class="line muted">Initializing neural connection to node network...</div>
+    </div>
+
+    <div class="options-list" id="options">
+      <!-- Option 1: Digital Biome -->
+      <a href="https://bakersean.top" class="option-link">
+        <span class="option-key">[ 1 ]</span>
+        <div class="option-details">
+          <span class="option-title">ACCESS PRIMARY BIOME (BAKERSEAN.TOP)</span>
+          <span class="option-desc">Personal digital garden, full interactive CV and project portfolios.</span>
+        </div>
+      </a>
+
+      <!-- Option 2: GitHub -->
+      <a href="https://github.com/BakerSean168" class="option-link">
+        <span class="option-key">[ 2 ]</span>
+        <div class="option-details">
+          <span class="option-title font-mono">DEV_PORTAL // GITHUB PROFILE</span>
+          <span class="option-desc">Source code repositories, technical artifacts, and open-source contributions.</span>
+        </div>
+      </a>
+
+      <!-- Option 3: Garden Notes -->
+      <a href="https://bakersean.top/notes" class="option-link">
+        <span class="option-key">[ 3 ]</span>
+        <div class="option-details">
+          <span class="option-title">DIGITAL NOTES GARDEN (OBSIDIAN FOREST)</span>
+          <span class="option-desc">Synchronized Obsidian notes, architecture cards and engineering reviews.</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="terminal-footer">
+      <div>LOC: GITHUB_PAGES_ROUTING</div>
+      <div id="clock">UTC: 00:00:00</div>
+    </div>
+  </div>
+
+  <script>
+    // Live Clock
+    function updateClock() {
+      const now = new Date();
+      document.getElementById('clock').innerText = 'UTC: ' + now.toISOString().split('T')[1].slice(0, 8);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // CLI Boot Simulation
+    const output = document.getElementById('output');
+    const options = document.getElementById('options');
+    
+    const lines = [
+      { text: "Connecting to host server...", type: "muted", delay: 400 },
+      { text: "Handshake completed. Protocol SECURE_TLS_V1.3", type: "muted", delay: 700 },
+      { text: "Loading biome parameters... DONE [365 nodes active]", type: "muted", delay: 1100 },
+      { text: "SYS.ENTITY_LOADED: BakerSean's profile directory online.", type: "primary", delay: 1500 },
+      { text: "> Please select a system coordinate to route:", type: "default", delay: 1900 }
+    ];
+
+    let currentLine = 0;
+
+    function printNextLine() {
+      if (currentLine < lines.length) {
+        const item = lines[currentLine];
+        setTimeout(() => {
+          // Remove previous cursor if any
+          const cursor = document.querySelector('.cursor');
+          if (cursor) cursor.remove();
+
+          const div = document.createElement('div');
+          div.className = 'line ' + (item.type || '');
+          
+          if (currentLine === lines.length - 1) {
+            div.innerHTML = item.text + '<span class="cursor"></span>';
+          } else {
+            div.textContent = item.text;
+          }
+          
+          output.appendChild(div);
+          currentLine++;
+          printNextLine();
+        }, currentLine === 0 ? 200 : lines[currentLine].delay - lines[currentLine - 1].delay);
+      } else {
+        // Show options list with slight fade-in
+        setTimeout(() => {
+          options.classList.add('visible');
+        }, 300);
+      }
+    }
+
+    // Start simulation
+    setTimeout(printNextLine, 500);
+
+    // Keyboard navigation (Retro touch)
+    document.addEventListener('keydown', (e) => {
+      if (options.classList.contains('visible')) {
+        if (e.key === '1') {
+          window.location.href = "https://bakersean.top";
+        } else if (e.key === '2') {
+          window.location.href = "https://github.com/BakerSean168";
+        } else if (e.key === '3') {
+          window.location.href = "https://bakersean.top/notes";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
